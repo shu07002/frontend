@@ -37,7 +37,6 @@ const LoginButton = ({
     window.location.href = link;
   };
 
-  // =============================================================== 공부 필요
   const onClickNormalLogin = async () => {
     setSubmitted(true);
     const isErrorFree = Object.values(error).every(
