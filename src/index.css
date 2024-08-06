@@ -10,7 +10,9 @@
 }
 
 body {
-  background-color: black; /*FFF099 추후 색깔 변경해야함!*/
+  background-image : url('/public/images/background.jpg');
+  background-size: cover;
+  background-position: center;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
