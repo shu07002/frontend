@@ -19,6 +19,7 @@ const ResultQuote = ({
 }: ResultQuoteProps) => {
   const [flipped, setFlipped] = useState(false);
 
+  const shortDescription = description.split('.')[0];
   const onClickCard = () => {
     setFlipped(!flipped);
   };
@@ -57,7 +58,7 @@ const ResultQuote = ({
           </div>
 
           <div className="transform-rotY180 flex w-full justify-center absolute top-5 [text-shadow:_10px_10px_7px_rgb(0,0,0,50%)] backface-hidden">
-            <span className="text-center font-bold">{description}</span>
+            <span className="text-center font-bold">{shortDescription}</span>
           </div>
         </div>
         <button
