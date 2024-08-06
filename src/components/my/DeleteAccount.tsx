@@ -27,7 +27,7 @@ const DeleteAccount = () => {
     try {
       const response = await instance.get('accounts/profile/', {
         headers: {
-          Authorization: `token ${localStorage.getItem('accessToken')}`,
+          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
       });
       if (response.status === 200) {
@@ -45,7 +45,7 @@ const DeleteAccount = () => {
       password,
     };
     try {
-      const response = await instance.post('accounts/login/', body);
+      const response = await instance.post('/accounts/login/', body);
       if (response.status === 200) {
         return true;
       }
@@ -60,9 +60,9 @@ const DeleteAccount = () => {
     const canDelete = await onCheckDeletion();
     if (canDelete) {
       try {
-        const response = await instance.delete('accounts/profile/', {
+        const response = await instance.delete('/accounts/profile/', {
           headers: {
-            Authorization: `token ${localStorage.getItem('accessToken')}`,
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         });
         if (response.status === 204) {

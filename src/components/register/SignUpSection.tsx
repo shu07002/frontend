@@ -67,13 +67,6 @@ const SignUpSection = ({
 
   const onSubmit = async () => {
     setSubmitted(true);
-    const isErrorFree = Object.values(error).every(
-      (element) => element === true,
-    );
-
-    if (!isErrorFree || !emailCheck) {
-      return;
-    }
 
     const body = {
       email: register.email,

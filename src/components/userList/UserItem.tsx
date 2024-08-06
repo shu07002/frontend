@@ -19,18 +19,16 @@ const UserItem = ({
   showingUser,
   showUserProfile,
 }: UserItemProps) => {
-  const followRef = useRef<HTMLButtonElement>(null);
   const [user] = smallUser.filter((value) => value.email === element.email);
   const [followed, setFollowed] = useState(false);
   const [show, setShow] = useState(false);
+  const followRef = useRef<HTMLButtonElement>(null);
 
   const onClickFollow = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     const headers = {
       Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
     };
-
-    console.log(user.id);
 
     try {
       const response = await instance.post(
@@ -39,42 +37,30 @@ const UserItem = ({
         { headers },
       );
       if (response.status === 200) {
-        console.log('팔로우 하거나 끊거나하~~');
+        console.log('follow access');
       }
     } catch (error) {
       console.log(error);
     }
 
-    if (followRef.current) {
-      if (followed) {
-        followRef.current.style.backgroundColor = 'white';
-        followRef.current.style.color = 'black';
-        followRef.current.style.border = '1px solid black';
-      } else {
-        followRef.current.style.backgroundColor = 'blue';
-        followRef.current.style.color = 'white';
-        followRef.current.style.border = 'none';
-      }
-      setFollowed(!followed);
-    }
+    setFollowed(!followed);
   };
-
-  useEffect(() => {
-    // 팔로우 초기 상태
-    if (currentuser?.followings.some((element) => element.id === user.id)) {
-      if (followRef.current) {
-        followRef.current.style.backgroundColor = 'blue';
-        followRef.current.style.color = 'white';
-        followRef.current.style.border = 'none';
-        setFollowed(true);
-      }
-    }
-  }, [currentuser, user.id]);
 
   const onClickShow = () => {
     showUserProfile(element.email);
     setShow(!show);
   };
+
+  useEffect(() => {
+    if (currentuser?.followings.some((element) => element.id === user.id)) {
+      if (followRef.current) {
+        followRef.current.style.backgroundColor = 'light-blue';
+        followRef.current.style.color = 'white';
+        followRef.current.style.border = 'none';
+        setFollowed(true);
+      }
+    }
+  }, []);
 
   return (
     <div
@@ -104,11 +90,11 @@ const UserItem = ({
           </div>
         </div>
       </div>
-      <div className="p-3">
+      <div className="p-3 mb-2">
         <button
           ref={followRef}
           type="button"
-          className="border-black border p-2 text-sm rounded-md hover:bg-black hover:text-white"
+          className={` ${!followed ? 'border border-black p-2 rounded-lg  hover:text-white hover:bg-black text-black' : 'bg-blue-400 border-none p-2 rounded-lg text-white'}  mt-4 text-sm z-60`}
           onClick={onClickFollow}
         >
           {followed ? '팔로잉' : '팔로우'}

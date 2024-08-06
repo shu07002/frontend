@@ -18,7 +18,7 @@ const FOOTER_ITEMS = [
     name: '둘러보기',
     src: '/icons/follow.png',
     activeSrc: '/icons/follow-click.png',
-    to: '/quoteList',
+    to: '/userList',
   },
   {
     name: 'My',
