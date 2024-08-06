@@ -4,10 +4,10 @@ import RegisterPage from 'pages/register/RegisterPage';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomePage from 'pages/home/HomePage';
-import QuoteListPage from 'pages/quoteList/QuoteListPage';
 import ResultQuotePage from 'pages/resultQuote/ResultQuotePage';
 import Redirection from 'pages/login/Redirection';
 import WriteQuotePage from 'pages/writeQuote/WriteQuotePage';
+import UserListPage from 'pages/userList/UserListPage';
 import DeleteAccount from 'components/my/DeleteAccount';
 import EditProfilePage from 'pages/editProfile/EditProfilePage';
 
@@ -18,7 +18,7 @@ function Router() {
         <Route path="/" element={<HomePage />} />
         <Route path="/resultQuote/:id" element={<ResultQuotePage />} />
         <Route path="/writeQuote" element={<WriteQuotePage />} />
-        <Route path="/quoteList" element={<QuoteListPage />} />
+        <Route path="/userList" element={<UserListPage />} />
         <Route path="/auth/callback/" element={<Redirection />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
