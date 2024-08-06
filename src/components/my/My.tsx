@@ -71,8 +71,6 @@ const My = () => {
     fetchProfileData();
   }, []);
 
-  console.log(user);
-
   const getLikedQuotes = async () => {
     if (user) {
       const likedQuotesData = await Promise.all(

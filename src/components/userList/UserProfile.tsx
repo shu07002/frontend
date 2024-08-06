@@ -49,8 +49,6 @@ const UserProfile = ({
         Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       };
 
-      console.log(user.id);
-
       try {
         const response = await instance.post(
           `accounts/follow/${user.id}/`,
@@ -58,13 +56,13 @@ const UserProfile = ({
           { headers },
         );
         if (response.status === 200) {
-          console.log('팔로우 하거나 끊거나하~~');
+          console.log('follow access');
         }
       } catch (error) {
         console.log(error);
       }
-      setFollowed(!followed);
     }
+    setFollowed(!followed);
   };
 
   const handleProfileClick = (e: React.MouseEvent) => {
