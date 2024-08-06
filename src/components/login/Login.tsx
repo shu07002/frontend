@@ -5,12 +5,6 @@ import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import LoginButton from './LoginButton';
 
-// 추가해야 할 사항
-// 1. 로그인 버튼 눌렀을 때, 서버에서 GET해서 확인하기 (API 명세서 다 나오면 확인)
-// 5. 유저 정보 어떻게 저장할 것인지
-// 6. useEffect 사용해서 isLogin 생각하기
-// 7. 로그인 이메일, 비밀번호 형식 확인
-
 const Login = () => {
   const isLoggedIn = localStorage.getItem('accessToken');
   const navigate = useNavigate();

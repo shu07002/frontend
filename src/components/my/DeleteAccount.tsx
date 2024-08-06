@@ -45,7 +45,7 @@ const DeleteAccount = () => {
       password,
     };
     try {
-      const response = await instance.post('/accounts/login/', body);
+      const response = await instance.post('accounts/login/', body);
       if (response.status === 200) {
         return true;
       }
@@ -60,7 +60,7 @@ const DeleteAccount = () => {
     const canDelete = await onCheckDeletion();
     if (canDelete) {
       try {
-        const response = await instance.delete('/accounts/profile/', {
+        const response = await instance.delete('accounts/profile/', {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
