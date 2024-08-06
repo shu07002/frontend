@@ -15,7 +15,6 @@ const UserList = () => {
 
       if (response.status === 200) {
         setUser(response.data);
-        console.log(response.data);
       }
     } catch (err) {
       console.log(err);
@@ -52,7 +51,6 @@ const UserList = () => {
 
       if (response.status === 200) {
         setSmallUser(response.data);
-        console.log(response.data);
       }
     } catch (err) {
       console.log(err);
@@ -64,10 +62,6 @@ const UserList = () => {
     getSmallUsers();
     fetchProfileData();
   }, []);
-
-  useEffect(() => {
-    console.log(fetchedData());
-  }, [smallUser, currentuser, user]);
 
   const fetchedData = () => {
     if (user && currentuser) {
