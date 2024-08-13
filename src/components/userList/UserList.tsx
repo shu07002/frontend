@@ -8,12 +8,14 @@ const UserList = () => {
   const [user, setUser] = useState<listUser[]>([]);
   const [showingUser, setShowingUser] = useState<listUser>();
   const [currentuser, setCurrentUser] = useState<user>();
+  const [catchChange, setCatchChange] = useState(false);
 
   const getUsers = async () => {
     try {
       const response = await instance.get('accounts/list/');
 
       if (response.status === 200) {
+        console.log(response.data);
         setUser(response.data);
       }
     } catch (err) {

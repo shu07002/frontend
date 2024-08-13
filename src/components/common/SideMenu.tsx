@@ -32,6 +32,7 @@ const SideMenu = ({ onClickMenu }: SideMenuProps) => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
         },
+        withCredentials: true,
       });
       if (response.status === 200) {
         setNickname(response.data.nickname);

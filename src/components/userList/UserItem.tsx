@@ -94,7 +94,7 @@ const UserItem = ({
         <button
           ref={followRef}
           type="button"
-          className={` ${!followed ? 'border border-black p-2 rounded-lg  hover:text-white hover:bg-black text-black' : 'bg-blue-400 border-none p-2 rounded-lg text-white'}  mt-4 text-sm z-60`}
+          className={` ${!followed ? 'border bg-slate-300 p-2 rounded-lg text-black' : 'bg-blue-400 border-none p-2 rounded-lg text-white'}  mt-4 text-sm z-60`}
           onClick={onClickFollow}
         >
           {followed ? '팔로잉' : '팔로우'}
