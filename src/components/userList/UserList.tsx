@@ -8,7 +8,6 @@ const UserList = () => {
   const [user, setUser] = useState<listUser[]>([]);
   const [showingUser, setShowingUser] = useState<listUser>();
   const [currentuser, setCurrentUser] = useState<user>();
-  const [catchChange, setCatchChange] = useState(false);
 
   const getUsers = async () => {
     try {

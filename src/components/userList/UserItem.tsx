@@ -94,7 +94,7 @@ const UserItem = ({
         <button
           ref={followRef}
           type="button"
-          className={` ${!followed ? 'border bg-slate-300 p-2 rounded-lg text-black' : 'bg-blue-400 border-none p-2 rounded-lg text-white'}  mt-4 text-sm z-60`}
+          className={` ${!followed ? 'bg-slate-300 p-2 rounded-lg text-black' : 'bg-blue-400 p-2 rounded-lg text-white'}  mt-4 text-sm z-60 shadow-md`}
           onClick={onClickFollow}
         >
           {followed ? '팔로잉' : '팔로우'}
@@ -104,10 +104,8 @@ const UserItem = ({
         <UserProfilePortal>
           <UserProfile
             showingUser={showingUser}
-            smallUser={smallUser}
-            currentuser={currentuser}
             followed={followed}
-            setFollowed={setFollowed}
+            onClickFollow={onClickFollow}
           />
           <div className="absolute top-0 left-0 h-screen flex w-full">
             <div
