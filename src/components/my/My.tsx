@@ -96,7 +96,7 @@ const My = () => {
   }, [user]);
 
   return (
-    <div className="min-h-screen p-[30px] flex flex-col gap-5 pb-[100px] items-center">
+    <div className="p-[30px] flex flex-col gap-5 pb-[100px] items-center">
       <div className="container mx-auto w-full bg-white p-[30px] rounded-lg shadow-custom">
         <div className="flex flex-col items-center text-center gap-2">
           <img
@@ -132,14 +132,11 @@ const My = () => {
             ))}
           </div>
           {activeTab === 'Liked' ? (
-            <ul className="flex flex-col">
+            <ul className="flex flex-col pt-5 h-[200px] gap-5 overflow-scroll scrollbar-hide">
               {likedQuotes?.map((element) => (
-                <li
-                  key={element.id}
-                  className="flex flex-col border-b-[1px] border-slate-300 p-3"
-                >
+                <li key={element.id} className="relative flex flex-col gap-3">
                   <span>{element.content}</span>
-                  <span className="text-end block">{`${element.author}`}</span>
+                  <span className="absolute bottom-0 right-0">{`-${element.author}-`}</span>
                 </li>
               ))}
             </ul>
@@ -156,13 +153,13 @@ const My = () => {
               </button>
             )}
             {activeTab === 'Added' ? (
-              <ul className="flex flex-col">
+              <ul className="flex flex-col h-[200px] gap-4 overflow-scroll scrollbar-hide">
                 {user?.registered_quotes?.map((element) => (
                   <li
                     key={element.id}
-                    className="flex flex-col border-b-[1px] border-slate-300 p-3"
+                    className="border-b-[1px] border-gray-300"
                   >
-                    {element.content}
+                    <p className="mb-3">{element.content}</p>
                   </li>
                 ))}
               </ul>

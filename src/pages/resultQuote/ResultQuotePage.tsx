@@ -6,6 +6,7 @@ import ResultQuote from 'components/resultQuote/ResultQuote';
 import WriteComment from 'components/resultQuote/WriteComment';
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { user } from 'types/userList';
 
 interface UserType {
   email: string;
@@ -34,11 +35,28 @@ const ResultQuotePage = () => {
   const [commentData, setCommentData] = useState([]);
   const [comment, setComment] = useState('');
   const [imageURL, setImageURL] = useState('');
+  const [currentuser, setCurrentUser] = useState<user>();
+
   const isLoggedIn = localStorage.getItem('accessToken');
+
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const userInfoResponse = await instance.get('accounts/profile/', {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(`accessToken`)}`,
+          },
+        });
+        if (userInfoResponse.status === 200) {
+          setCurrentUser(userInfoResponse.data);
+        }
+      } catch (error) {
+        console.error('데이터를 불러오는 데 실패했습니다', error);
+      }
+    };
     const fetchData = async () => {
       if (!isLoggedIn) {
         navigate('/login');
@@ -62,7 +80,13 @@ const ResultQuotePage = () => {
     };
 
     fetchData();
+    fetchProfileData();
   }, []);
+
+  useEffect(() => {
+    if (currentuser?.like_quotes.some((quote) => quote.toString() === id))
+      setIsLike(true);
+  }, [currentuser]);
 
   useEffect(() => {
     isLikeRef.current = isLike;
@@ -92,7 +116,7 @@ const ResultQuotePage = () => {
       };
       fetchLiked();
     };
-  }, [isLike]); // id가 변경될 때마다 useEffect 재실행
+  }, [isLike]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -138,7 +162,6 @@ const ResultQuotePage = () => {
 
   const handleLike = () => {
     setIsLike(!isLike);
-    console.log(commentData);
   };
 
   return (

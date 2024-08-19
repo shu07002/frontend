@@ -7,7 +7,6 @@ interface UserDataProps {
   nickname: string;
   email: string;
   profile_image: string;
-  passwordCheck: string;
   password: string;
   newPassword: string;
   newPasswordCheck: string;
@@ -18,7 +17,6 @@ const EditProfilePage = () => {
     nickname: '',
     email: '',
     profile_image: '',
-    passwordCheck: '',
     password: '',
     newPassword: '',
     newPasswordCheck: '',
@@ -61,7 +59,6 @@ const EditProfilePage = () => {
     const formData = new FormData();
     formData.append('email', userData.email);
     formData.append('nickname', userData.nickname);
-    formData.append('current_password', userData.passwordCheck);
     if (newProfileImage) {
       formData.append('profile_image', newProfileImage);
     }
@@ -77,7 +74,6 @@ const EditProfilePage = () => {
       if (response.status === 200) {
         setUserData((prevState) => ({
           ...prevState,
-          passwordCheck: '',
           profile_image: response.data.profile_image,
         }));
         console.log('닉네임 변경 완료!');
@@ -163,7 +159,6 @@ const EditProfilePage = () => {
 
         <ChangeNickname
           nickname={userData.nickname}
-          passwordCheck={userData.passwordCheck}
           handleChange={handleChange}
         />
         <button
