@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { instance } from 'api/instance';
 import React, { useRef } from 'react';
 
 interface EmailSectionProps {
@@ -42,9 +42,7 @@ const EmailSection = ({
   // 중복 확인 하는 곳
   const onAvail = async () => {
     try {
-      const respone = await axios.get(
-        'http://15.164.27.255/accounts/register/',
-      );
+      const respone = await instance.get('/accounts/register/');
       if (respone.status === 200) {
         userListRef.current = respone.data; // <- 이 녀석 배열인가?
 
