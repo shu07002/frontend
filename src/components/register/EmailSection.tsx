@@ -42,7 +42,7 @@ const EmailSection = ({
   // 중복 확인 하는 곳
   const onAvail = async () => {
     try {
-      const respone = await instance.get('/accounts/register/');
+      const respone = await instance.get('accounts/register/');
       if (respone.status === 200) {
         userListRef.current = respone.data; // <- 이 녀석 배열인가?
 
