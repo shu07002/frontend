@@ -4,7 +4,7 @@ import { QuoteImage } from 'components/common/constants/QuoteImage';
 import Comment from 'components/resultQuote/Comment';
 import ResultQuote from 'components/resultQuote/ResultQuote';
 import WriteComment from 'components/resultQuote/WriteComment';
-import React, { ChangeEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 interface UserType {
@@ -24,6 +24,7 @@ interface CommentType {
 
 const ResultQuotePage = () => {
   const [isLike, setIsLike] = useState(false);
+  const isLikeRef = useRef(isLike); // useRef로 isLike 값을 저장할 ref 생성
   const [quoteData, setQuoteData] = useState({
     author: '',
     content: '',
@@ -64,6 +65,36 @@ const ResultQuotePage = () => {
   }, []);
 
   useEffect(() => {
+    isLikeRef.current = isLike;
+
+    return () => {
+      const fetchLiked = async () => {
+        if (isLikeRef.current) {
+          try {
+            const headers = {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            };
+
+            const response = await instance.post(
+              `quote/${id}/like/`,
+              {},
+              {
+                headers,
+              },
+            );
+            if (response.status === 200) {
+              console.log('성공');
+            }
+          } catch (error) {
+            alert(error);
+          }
+        }
+      };
+      fetchLiked();
+    };
+  }, [isLike]); // id가 변경될 때마다 useEffect 재실행
+
+  useEffect(() => {
     const fetchData = async () => {
       try {
         const commentResponse = await instance.get(`quote/${id}/comment/`);
@@ -77,26 +108,6 @@ const ResultQuotePage = () => {
   }, [comment]);
 
   const handleClick = async () => {
-    if (isLike) {
-      try {
-        const headers = {
-          Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
-        };
-
-        const response = await instance.post(
-          `quote/${id}/like/`,
-          {},
-          {
-            headers,
-          },
-        );
-        if (response.status === 200) {
-          console.log('성공');
-        }
-      } catch (error) {
-        alert(error);
-      }
-    }
     navigate('/userList');
   };
 

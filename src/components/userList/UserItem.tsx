@@ -1,22 +1,22 @@
 import { instance } from 'api/instance';
 import UserProfilePortal from 'helpers/UserProfilePortal';
 import React, { useEffect, useRef, useState } from 'react';
-import { smallUser, user, listUser } from 'types/userList';
+import { smallUser, listUser, user } from 'types/userList';
 import UserProfile from './UserProfile';
 
 interface UserItemProps {
   element: listUser;
   smallUser: smallUser[];
-  currentuser?: user;
   showingUser?: listUser;
+  currentuser?: user;
   showUserProfile(targetEmail: string): void;
 }
 
 const UserItem = ({
   element,
   smallUser,
-  currentuser,
   showingUser,
+  currentuser,
   showUserProfile,
 }: UserItemProps) => {
   const [user] = smallUser.filter((value) => value.email === element.email);
@@ -55,8 +55,6 @@ const UserItem = ({
     if (currentuser?.followings.some((element) => element.id === user.id)) {
       if (followRef.current) {
         followRef.current.style.backgroundColor = 'light-blue';
-        followRef.current.style.color = 'white';
-        followRef.current.style.border = 'none';
         setFollowed(true);
       }
     }
@@ -94,7 +92,7 @@ const UserItem = ({
         <button
           ref={followRef}
           type="button"
-          className={` ${!followed ? 'bg-slate-300 p-2 rounded-lg text-black' : 'bg-blue-400 p-2 rounded-lg text-white'}  mt-4 text-sm z-60 shadow-md`}
+          className={`${!followed ? 'bg-slate-300 p-2 rounded-lg text-black' : 'bg-blue-400 p-2 rounded-lg text-white'} mt-4 text-sm z-60 shadow-md`}
           onClick={onClickFollow}
         >
           {followed ? '팔로잉' : '팔로우'}

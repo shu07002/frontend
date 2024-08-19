@@ -68,7 +68,7 @@ const UserProfile = ({
               <span>팔로워 : {showingUser.follower_count}</span>
             </div>
             <button
-              className={` ${!followed ? 'border border-black p-2 rounded-lg' : 'bg-blue-400 border-none p-2 rounded-lg text-white'}  mt-4 text-sm hover:text-white hover:bg-black z-60`}
+              className={`${!followed ? 'bg-slate-300 p-2 rounded-lg text-black' : 'bg-blue-400 p-2 rounded-lg text-white'} mt-4 text-sm z-60 shadow-md`}
               type="button"
               onClick={onClickFollow}
             >

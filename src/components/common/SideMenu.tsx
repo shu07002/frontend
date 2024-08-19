@@ -26,7 +26,6 @@ const SideMenu = ({ onClickMenu }: SideMenuProps) => {
   }, []);
 
   const onGetUserNickname = async () => {
-    console.log(localStorage.getItem('accessToken'));
     try {
       const response = await instance.get('accounts/profile/', {
         headers: {

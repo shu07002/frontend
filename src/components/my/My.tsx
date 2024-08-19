@@ -57,7 +57,6 @@ const My = () => {
         },
       });
       if (userInfoResponse.status === 200) {
-        console.log(userInfoResponse.data);
         setUser(userInfoResponse.data);
       }
     } catch (error) {
