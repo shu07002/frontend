@@ -135,8 +135,8 @@ const My = () => {
             <ul className="flex flex-col pt-5 h-[200px] gap-5 overflow-scroll scrollbar-hide">
               {likedQuotes?.map((element) => (
                 <li key={element.id} className="relative flex flex-col gap-3">
-                  <span>{element.content}</span>
-                  <span className="absolute bottom-0 right-0">{`-${element.author}-`}</span>
+                  <p>{element.content}</p>
+                  <p className="text-end">{`-${element.author}-`}</p>
                 </li>
               ))}
             </ul>

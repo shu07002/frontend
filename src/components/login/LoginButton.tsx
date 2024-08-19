@@ -30,7 +30,7 @@ const LoginButton = ({
 
   const onClickKakaoLogin = () => {
     const REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
-    const REDIRECT_URI = 'https://hellopebblequote.vercel.app/auth/callback/'; // 프론트엔드의 Redirect URI
+    const REDIRECT_URI = 'https://hellopebblequote.vercel.app//auth/callback/'; // 프론트엔드의 Redirect URI
     console.log(REST_API_KEY, REDIRECT_URI);
     const link = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
@@ -58,10 +58,10 @@ const LoginButton = ({
       email: emailInput,
       password: passwordInput,
     };
-    console.log(process.env.REACT_APP_API_URL);
+
     try {
       const response = await instance.post('accounts/login/', dataToSend);
-      console.log(response.status);
+
       if (response.status === 200) {
         setSuccess(true);
         const accessToken = response.data.access;
@@ -76,6 +76,8 @@ const LoginButton = ({
   };
   // ========================================================================
 
+  // @@@@@@@@@@@@@@ 주석 없애기 @@@@@@@@@@@@@@@@@@@@@@@@
+  //
   useEffect(() => {
     if (submitted) {
       emailRef.current?.style.setProperty(
