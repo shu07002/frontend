@@ -59,7 +59,7 @@ const LoginButton = ({
       email: emailInput,
       password: passwordInput,
     };
-
+    console.log(process.env.REACT_APP_API_URL);
     try {
       const response = await instance.post('accounts/login/', dataToSend);
       console.log(response.status);
